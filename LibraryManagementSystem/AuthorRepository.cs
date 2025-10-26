@@ -1,6 +1,6 @@
 namespace LibraryManagementSystem;
 
-public class AuthorRepository
+public class AuthorRepository : IAuthorRepository
 {
     private string _connectionString;
     private LibraryDbContext _db;
@@ -28,12 +28,12 @@ public class AuthorRepository
         _db.Author.Remove(author);
     }
 
-    public Author GetAuthor(int id)
+    public Author GetById(int id)
     {
         return _db.Author.Find(a => a.Id == id);
     }
 
-    public List<Author> GetAuthors()
+    public List<Author> GetAll()
     {
         return _db.Author;
     }

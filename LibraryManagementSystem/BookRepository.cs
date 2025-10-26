@@ -1,6 +1,6 @@
 namespace LibraryManagementSystem;
 
-public class BookRepository
+public class BookRepository : IBookRepository
 {
     private string _connectionString;
     private LibraryDbContext _db;
@@ -29,12 +29,12 @@ public class BookRepository
         _db.Book.Remove(book);
     }
 
-    public Book GetBook(int id)
+    public Book GetById(int id)
     {
         return _db.Book.Find(b => b.Id == id);
     }
 
-    public List<Book> GetBooks()
+    public List<Book> GetAll()
     {
         return _db.Book;
     }
