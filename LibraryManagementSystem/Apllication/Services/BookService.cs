@@ -3,10 +3,12 @@ namespace LibraryManagementSystem;
 public class BookService
 {
     private IBookRepository _bookRepository;
+    private IAuthorRepository _authorRepository;
 
-    public BookService(IBookRepository bookRepository)
+    public BookService(IBookRepository bookRepository, IAuthorRepository authorRepository)
     {
         _bookRepository = bookRepository;
+        _authorRepository = authorRepository;
     }
 
     public void AddNewBook(Book book)
@@ -15,12 +17,13 @@ public class BookService
         {
             var existBook = _bookRepository.GetById(book.Id);
             if (existBook != null) throw new Exception("Книга уже существует!");
+            if (_authorRepository.GetById(book.AuthorId) == null)
+                throw new Exception("Автор для этой книги не найден");
             _bookRepository.Create(book);
         }
-        catch (Exception ex)
+        catch 
         {
-            Console.WriteLine("Ошибка: " + ex.Message);
-            return;
+            throw;
         }
     }
 
@@ -32,10 +35,9 @@ public class BookService
             if (existBook == null) throw new Exception("Книга не найдена!");
             return _bookRepository.GetById(id);
         }
-        catch (Exception ex)
+        catch 
         {
-            Console.WriteLine("Ошибка: " + ex.Message);
-            return null;
+            throw;
         }
     }
     
@@ -45,24 +47,23 @@ public class BookService
         {
             return _bookRepository.GetAll();
         }
-        catch (Exception ex)
+        catch 
         {
-            Console.WriteLine("Ошибка: " + ex.Message);
-            return null;
+            throw;
         }
     }
 
-    public void UpdateBookInformation(Book author)
+    public void UpdateBookInformation(Book book)
     {
         try
         {
-            var existBook = _bookRepository.GetById(author.Id);
+            var existBook = _bookRepository.GetById(book.Id);
             if (existBook == null) throw new Exception("Книга не найдена!");
-            _bookRepository.Update(author);
+            _bookRepository.Update(book);
         }
-        catch (Exception ex)
+        catch 
         {
-            Console.WriteLine("Ошибка: " + ex.Message);
+            throw;
         }
     }
 
@@ -74,9 +75,9 @@ public class BookService
             if (existBook == null) throw new Exception("Книга не найдена!");
             _bookRepository.Delete(_bookRepository.GetById(id));
         }
-        catch (Exception ex)
+        catch 
         {
-            Console.WriteLine("Ошибка: " + ex.Message);
+            throw;
         }
     }
 }

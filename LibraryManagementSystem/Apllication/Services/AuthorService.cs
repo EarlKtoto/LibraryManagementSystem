@@ -17,10 +17,9 @@ public class AuthorService
             if (existAuthor != null) throw new Exception("Автор уже существует!");
             _authorRepository.Create(author);
         }
-        catch (Exception ex)
+        catch 
         {
-            Console.WriteLine("Ошибка: " + ex.Message);
-            return;
+            throw;
         }
     }
 
@@ -32,10 +31,9 @@ public class AuthorService
             if (existAuthor == null) throw new Exception("Автор не найден!");
             return _authorRepository.GetById(id);
         }
-        catch (Exception ex)
+        catch 
         {
-            Console.WriteLine("Ошибка: " + ex.Message);
-            return null;
+            throw;
         }
     }
     
@@ -45,10 +43,9 @@ public class AuthorService
         {
             return _authorRepository.GetAll();
         }
-        catch (Exception ex)
+        catch 
         {
-            Console.WriteLine("Ошибка: " + ex.Message);
-            return null;
+            throw;
         }
     }
 
@@ -60,9 +57,9 @@ public class AuthorService
             if (existAuthor == null) throw new Exception("Автор не найден!");
             _authorRepository.Update(author);
         }
-        catch (Exception ex)
+        catch 
         {
-            Console.WriteLine("Ошибка: " + ex.Message);
+            throw;
         }
     }
 
@@ -74,9 +71,9 @@ public class AuthorService
             if (existAuthor == null) throw new Exception("Автор не найден!");
             _authorRepository.Delete(_authorRepository.GetById(id));
         }
-        catch (Exception ex)
+        catch 
         {
-            Console.WriteLine("Ошибка: " + ex.Message);
+            throw;
         }
     }
 }

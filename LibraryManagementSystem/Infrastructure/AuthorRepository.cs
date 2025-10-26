@@ -2,13 +2,11 @@ namespace LibraryManagementSystem;
 
 public class AuthorRepository : IAuthorRepository
 {
-    private string _connectionString;
     private LibraryDbContext _db;
 
-    public AuthorRepository(string connectionString, LibraryDbContext db)
+    public AuthorRepository(LibraryDbContext context)
     {
-        _connectionString = connectionString;
-        _db = db;
+        _db = context;
     }
 
     public void Create(Author author)
@@ -28,7 +26,7 @@ public class AuthorRepository : IAuthorRepository
         _db.Author.Remove(author);
     }
 
-    public Author GetById(int id)
+    public Author? GetById(int id)
     {
         return _db.Author.Find(a => a.Id == id);
     }
