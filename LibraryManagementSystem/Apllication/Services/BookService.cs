@@ -1,83 +1,55 @@
+using LibraryManagementSystem.Apllication.Validators;
+using LibraryManagementSystem.Resources;
+
 namespace LibraryManagementSystem;
 
 public class BookService
 {
     private IBookRepository _bookRepository;
     private IAuthorRepository _authorRepository;
-
-    public BookService(IBookRepository bookRepository, IAuthorRepository authorRepository)
+    private IValidator<Book> _bookValidator;
+    
+    public BookService(IBookRepository bookRepository, IAuthorRepository authorRepository, BookValidator bookValidator)
     {
         _bookRepository = bookRepository;
         _authorRepository = authorRepository;
+        _bookValidator = bookValidator;
     }
 
     public void AddNewBook(Book book)
     {
-        try
-        {
-            var existBook = _bookRepository.GetById(book.Id);
-            if (existBook != null) throw new Exception("Книга уже существует!");
-            if (_authorRepository.GetById(book.AuthorId) == null)
-                throw new Exception("Автор для этой книги не найден");
-            _bookRepository.Create(book);
-        }
-        catch 
-        {
-            throw;
-        }
+        _bookValidator.Validate(book);
+        var existBook = _bookRepository.GetById(book.Id);
+        if (existBook != null) throw new Exception(Messages.BookAlreadyExists);
+        if (_authorRepository.GetById(book.AuthorId) == null)
+            throw new Exception(Messages.AuthorForBookNotFound);
+        _bookRepository.Create(book);
     }
 
     public Book GetBookInformation(int id)
     {
-        try
-        {
-            var existBook = _bookRepository.GetById(id);
-            if (existBook == null) throw new Exception("Книга не найдена!");
-            return _bookRepository.GetById(id);
-        }
-        catch 
-        {
-            throw;
-        }
+        var existBook = _bookRepository.GetById(id);
+        if (existBook == null) throw new Exception(Messages.BookNotFound);
+        return _bookRepository.GetById(id);
     }
     
     public List<Book> GetAllBooksInformation()
     {
-        try
-        {
-            return _bookRepository.GetAll();
-        }
-        catch 
-        {
-            throw;
-        }
+        return _bookRepository.GetAll();
     }
 
     public void UpdateBookInformation(Book book)
     {
-        try
-        {
-            var existBook = _bookRepository.GetById(book.Id);
-            if (existBook == null) throw new Exception("Книга не найдена!");
-            _bookRepository.Update(book);
-        }
-        catch 
-        {
-            throw;
-        }
+        _bookValidator.Validate(book);
+        var existBook = _bookRepository.GetById(book.Id);
+        if (existBook == null) throw new Exception(Messages.BookNotFound);
+        _bookRepository.Update(book);
     }
 
     public void DeleteBook(int id)
     {
-        try
-        {
-            var existBook = _bookRepository.GetById(id);
-            if (existBook == null) throw new Exception("Книга не найдена!");
-            _bookRepository.Delete(_bookRepository.GetById(id));
-        }
-        catch 
-        {
-            throw;
-        }
+        var existBook = _bookRepository.GetById(id);
+        if (existBook == null) throw new Exception(Messages.BookNotFound);
+        _bookRepository.Delete(_bookRepository.GetById(id));
     }
 }

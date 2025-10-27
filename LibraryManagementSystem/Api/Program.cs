@@ -1,4 +1,6 @@
 using LibraryManagementSystem;
+using LibraryManagementSystem.Apllication.Validators;
+using Microsoft.AspNetCore.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,10 +9,26 @@ builder.Services.AddSingleton<LibraryDbContext>();
 builder.Services.AddSingleton<IAuthorRepository, AuthorRepository>();
 builder.Services.AddSingleton<IBookRepository, BookRepository>();
 
+builder.Services.AddScoped<IValidator<Author>, AuthorValidator>();
+builder.Services.AddScoped<IValidator<Book>, BookValidator>();
+
 builder.Services.AddScoped<AuthorService>();
 builder.Services.AddScoped<BookService>();
 
 var app = builder.Build();
+
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        context.Response.ContentType = "application/json";
+        context.Response.StatusCode = 500;
+        
+        var error = context.Features.Get<IExceptionHandlerFeature>().Error;   
+        
+        context.Response.WriteAsJsonAsync(new {error = error.Message});
+    });
+});
     
 app.MapGet("/authors", (AuthorService authorService) =>
 {

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    
+    <data name="AuthorAlreadyExists" xml:space="preserve">
+        <value>Автор уже существует!</value>
+    </data>
+
+    <data name="AuthorNotFound" xml:space="preserve">
+        <value>Автор не найден!</value>
+    </data>
+
+    <data name="BookAlreadyExists" xml:space="preserve">
+        <value>Книга уже существует!</value>
+    </data>
+
+    <data name="BookNotFound" xml:space="preserve">
+        <value>Книга не найдена!</value>
+    </data>
+
+    <data name="AuthorForBookNotFound" xml:space="preserve">
+        <value>Автор для этой книги не найден!</value>
+    </data>
+    
+    <data name="AuthorIdIsEmpty" xml:space="preserve">
+    <value>Идентификатор автора не может быть пустым.</value>
+  </data>
+
+    <data name="AuthorNameIsEmpty" xml:space="preserve">
+    <value>Имя автора не может быть пустым.</value>
+  </data>
+
+    <data name="AuthorNameTooLong" xml:space="preserve">
+    <value>Имя автора не должно превышать 100 символов.</value>
+  </data>
+
+    <data name="AuthorDateOfBirthIsEmpty" xml:space="preserve">
+    <value>Дата рождения автора не указана.</value>
+  </data>
+
+    <data name="AuthorDateOfBirthInvalid" xml:space="preserve">
+    <value>Дата рождения не может быть в будущем.</value>
+  </data>
+
+    <data name="BookIdIsEmpty" xml:space="preserve">
+    <value>Идентификатор книги не может быть пустым.</value>
+  </data>
+
+    <data name="BookTitleIsEmpty" xml:space="preserve">
+    <value>Название книги не может быть пустым.</value>
+  </data>
+
+    <data name="BookTitleTooLong" xml:space="preserve">
+    <value>Название книги не должно превышать 500 символов.</value>
+  </data>
+    
+    <data name="BookPublisherYearIsEmpty" xml:space="preserve">
+    <value>Год издания книги не может быть пустым.</value>
+  </data>
+
+    <data name="BookPublisherYearInvalid" xml:space="preserve">
+    <value>Год издания книги не может быть больше текущего.</value>
+  </data>
+
+    <data name="BookAuthorIsEmpty" xml:space="preserve">
+    <value>Не указан автор книги.</value>
+  </data>
+</root>
