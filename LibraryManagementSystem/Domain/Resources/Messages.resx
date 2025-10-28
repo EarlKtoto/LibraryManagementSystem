@@ -81,4 +81,28 @@
     <data name="BookAuthorIsEmpty" xml:space="preserve">
     <value>Не указан автор книги.</value>
   </data>
+    
+    <data name="AuthorAdded" xml:space="preserve">
+    <value>Автор успешно добавлен</value>
+  </data>
+  
+    <data name="AuthorUpdated" xml:space="preserve">
+    <value>Автор обновлен</value>
+  </data>
+  
+    <data name="AuthorDeleted" xml:space="preserve">
+    <value>Автор удален</value>
+  </data>
+
+    <data name="BookAdded" xml:space="preserve">
+    <value>Книга добавлена</value>
+  </data>
+  
+    <data name="BookUpdated" xml:space="preserve">
+    <value>Книга обновлена</value>
+  </data>
+  
+    <data name="BookDeleted" xml:space="preserve">
+    <value>Книга удалена</value>
+  </data>
 </root>

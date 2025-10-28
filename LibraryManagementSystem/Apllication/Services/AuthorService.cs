@@ -6,7 +6,7 @@ namespace LibraryManagementSystem;
 public class AuthorService
 {
     private IAuthorRepository _authorRepository;
-    private IValidator<Author> _authorValidator;
+    private AuthorValidator _authorValidator;
 
     public AuthorService(IAuthorRepository authorRepository, AuthorValidator authorValidator)
     {

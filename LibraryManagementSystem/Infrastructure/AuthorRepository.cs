@@ -11,6 +11,7 @@ public class AuthorRepository : IAuthorRepository
 
     public void Create(Author author)
     {
+        author.Id = this.GetAll().Max(a => a.Id) + 1;
         _db.Author.Add(author);
     }
 

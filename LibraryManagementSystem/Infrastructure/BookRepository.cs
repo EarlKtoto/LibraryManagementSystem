@@ -11,6 +11,7 @@ public class BookRepository : IBookRepository
 
     public void Create(Book book)
     {
+        book.Id = this.GetAll().Max(b => b.Id) + 1;
         _db.Book.Add(book);
     }
 

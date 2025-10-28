@@ -60,6 +60,15 @@ namespace LibraryManagementSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Автор успешно добавлен.
+        /// </summary>
+        internal static string AuthorAdded {
+            get {
+                return ResourceManager.GetString("AuthorAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Автор уже существует!.
         /// </summary>
         internal static string AuthorAlreadyExists {
@@ -83,6 +92,15 @@ namespace LibraryManagementSystem.Resources {
         internal static string AuthorDateOfBirthIsEmpty {
             get {
                 return ResourceManager.GetString("AuthorDateOfBirthIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Автор удален.
+        /// </summary>
+        internal static string AuthorDeleted {
+            get {
+                return ResourceManager.GetString("AuthorDeleted", resourceCulture);
             }
         }
         
@@ -132,6 +150,24 @@ namespace LibraryManagementSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Автор обновлен.
+        /// </summary>
+        internal static string AuthorUpdated {
+            get {
+                return ResourceManager.GetString("AuthorUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Книга добавлена.
+        /// </summary>
+        internal static string BookAdded {
+            get {
+                return ResourceManager.GetString("BookAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Книга уже существует!.
         /// </summary>
         internal static string BookAlreadyExists {
@@ -146,6 +182,15 @@ namespace LibraryManagementSystem.Resources {
         internal static string BookAuthorIsEmpty {
             get {
                 return ResourceManager.GetString("BookAuthorIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Книга удалена.
+        /// </summary>
+        internal static string BookDeleted {
+            get {
+                return ResourceManager.GetString("BookDeleted", resourceCulture);
             }
         }
         
@@ -200,6 +245,15 @@ namespace LibraryManagementSystem.Resources {
         internal static string BookTitleTooLong {
             get {
                 return ResourceManager.GetString("BookTitleTooLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Книга обновлена.
+        /// </summary>
+        internal static string BookUpdated {
+            get {
+                return ResourceManager.GetString("BookUpdated", resourceCulture);
             }
         }
     }

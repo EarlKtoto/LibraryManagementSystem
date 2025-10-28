@@ -7,7 +7,7 @@ public class BookService
 {
     private IBookRepository _bookRepository;
     private IAuthorRepository _authorRepository;
-    private IValidator<Book> _bookValidator;
+    private BookValidator _bookValidator;
     
     public BookService(IBookRepository bookRepository, IAuthorRepository authorRepository, BookValidator bookValidator)
     {
