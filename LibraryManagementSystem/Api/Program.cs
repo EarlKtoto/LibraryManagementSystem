@@ -69,6 +69,18 @@ app.MapDelete("/authors/{id:int}", (int id, AuthorService authorService) =>
     return Results.Ok(Messages.AuthorDeleted);
 });
 
+app.MapGet("/authors/withbookcount", (AuthorService authorService) =>
+{
+    var authors = authorService.GetAuthorsWithBookCount();
+    return Results.Ok(authors);
+});
+
+app.MapGet("/authors/byname/{name}", (string name, AuthorService authorService) =>
+{
+    var author = authorService.FindAuthorByName(name);
+    return Results.Ok(author.ToReadDto());
+});
+
 app.MapGet("/books", (BookService bookService) =>
 {
     var books = bookService.GetAllBooksInformation();
@@ -104,6 +116,17 @@ app.MapDelete("/books/{id:int}", (int id, BookService bookService) =>
 {
     bookService.DeleteBook(id);
     return Results.Ok(Messages.BookDeleted);
+});
+
+app.MapGet("/books/afteryear/{year:int}", (int year, BookService bookService) =>
+{
+    var books = bookService.GetBooksCreatedAfter(year);
+    var dtos = new List<BookReadDto>();
+
+    foreach (var book in books)
+        dtos.Add(book.ToReadDto());
+    
+    return Results.Ok(dtos);
 });
 
 app.Run();

@@ -1,13 +1,24 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace LibraryManagementSystem;
 
-public class LibraryDbContext
+public class LibraryDbContext : DbContext
 {
-    public LibraryDbContext()
+    public DbSet<Author> Authors { get; set; }
+    public DbSet<Book> Books { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        Author = new List<Author>();
-        Book = new List<Book>();
+        optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=LibraryDb;Trusted_Connection=True;TrustServerCertificate=True;");
     }
-    
-    public List<Author> Author {get;set;} = new List<Author>();
-    public List<Book> Book {get;set;} = new List<Book>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Book>()
+            .HasOne(b => b.Author)
+            .WithMany(a => a.Books)
+            .HasForeignKey(b => b.AuthorId);
+        
+        base.OnModelCreating(modelBuilder);
+    }
 }

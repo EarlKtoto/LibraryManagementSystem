@@ -1,3 +1,4 @@
+using LibraryManagementSystem.Api.DTOs;
 using LibraryManagementSystem.Apllication.Validators;
 using LibraryManagementSystem.Resources;
 
@@ -6,9 +7,10 @@ namespace LibraryManagementSystem;
 public class AuthorService
 {
     private IAuthorRepository _authorRepository;
+    private IBookRepository _bookRepository;
     private AuthorValidator _authorValidator;
 
-    public AuthorService(IAuthorRepository authorRepository, AuthorValidator authorValidator)
+    public AuthorService(IAuthorRepository authorRepository,IBookRepository bookRepository, AuthorValidator authorValidator)
     {
         _authorRepository = authorRepository;
         _authorValidator = authorValidator;
@@ -47,5 +49,25 @@ public class AuthorService
         var existAuthor = _authorRepository.GetById(id);
         if (existAuthor == null) throw new Exception(Messages.AuthorNotFound);
         _authorRepository.Delete(_authorRepository.GetById(id));
+    }
+
+    public List<AuthorWithBookCountDto> GetAuthorsWithBookCount()
+    {
+        return _authorRepository.GetAll()
+            .Select(a => new AuthorWithBookCountDto()
+            {
+                Id = a.Id,
+                Name = a.Name,
+                DateOfBirth = a.DateOfBirth,
+                BookCount = a.Books.Count
+            })
+            .ToList();
+    }
+
+    public Author FindAuthorByName(string name)
+    {
+        return _authorRepository.GetAll()
+            .Where(a => a.Name.ToLower().Contains(name.ToLower()))
+            .FirstOrDefault();
     }
 }

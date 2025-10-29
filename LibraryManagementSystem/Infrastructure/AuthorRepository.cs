@@ -12,28 +12,29 @@ public class AuthorRepository : IAuthorRepository
     public void Create(Author author)
     {
         author.Id = this.GetAll().Max(a => a.Id) + 1;
-        _db.Author.Add(author);
+        _db.Authors.Add(author);
     }
 
     public void Update(Author author)
     {
-        Author _author = _db.Author.Find(a => a.Id == author.Id);
+        Author _author = _db.Authors.FirstOrDefault(a => a.Id == author.Id);
         _author.Name = author.Name;
         _author.DateOfBirth = author.DateOfBirth;
     }
 
     public void Delete(Author author)
     {
-        _db.Author.Remove(author);
+        _db.Authors.Remove(author);
     }
 
     public Author? GetById(int id)
     {
-        return _db.Author.Find(a => a.Id == id);
+        return _db.Authors
+            .FirstOrDefault(a => a.Id == id);
     }
 
     public List<Author> GetAll()
     {
-        return _db.Author;
+        return _db.Authors.ToList();;
     }
 }

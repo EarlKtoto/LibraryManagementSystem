@@ -12,12 +12,12 @@ public class BookRepository : IBookRepository
     public void Create(Book book)
     {
         book.Id = this.GetAll().Max(b => b.Id) + 1;
-        _db.Book.Add(book);
+        _db.Books.Add(book);
     }
 
     public void Update(Book book)
     {
-        Book _book = _db.Book.Find(b =>  b.Id == book.Id);
+        Book _book = _db.Books.FirstOrDefault(b =>  b.Id == book.Id);
         _book.Title = book.Title;
         _book.PublisherYear = book.PublisherYear;
         _book.AuthorId = book.AuthorId;
@@ -25,16 +25,16 @@ public class BookRepository : IBookRepository
 
     public void Delete(Book book)
     {
-        _db.Book.Remove(book);
+        _db.Books.Remove(book);
     }
 
     public Book? GetById(int id)
     {
-        return _db.Book.Find(b => b.Id == id);
+        return _db.Books.FirstOrDefault(b => b.Id == id);
     }
 
     public List<Book> GetAll()
     {
-        return _db.Book;
+        return _db.Books.ToList();
     }
 }

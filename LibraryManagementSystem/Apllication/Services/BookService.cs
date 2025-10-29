@@ -52,4 +52,11 @@ public class BookService
         if (existBook == null) throw new Exception(Messages.BookNotFound);
         _bookRepository.Delete(_bookRepository.GetById(id));
     }
+
+    public List<Book> GetBooksCreatedAfter(int year)
+    {
+        return _bookRepository.GetAll()
+            .Where(b => b.PublisherYear >= year)
+            .ToList();
+    }
 }

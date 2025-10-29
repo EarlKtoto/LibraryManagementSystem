@@ -1,0 +1,9 @@
+namespace LibraryManagementSystem.Api.DTOs;
+
+public class AuthorWithBookCountDto
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public DateOnly DateOfBirth { get; set; }
+    public int BookCount { get; set; }
+}
